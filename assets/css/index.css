@@ -1,0 +1,235 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+    color: #333;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    overflow: hidden; /* Empêche le défilement vertical */
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+    line-height: 1.2;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: calc(100vh - 80px); /* Ajuste la hauteur totale pour exclure l'espace pris par le header */
+    gap: 10px;
+    overflow: hidden;
+}
+
+.left-panel, .right-panel {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+}
+
+.left-panel {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Espacement entre les sections */
+}
+
+.right-panel {
+    flex: 1;
+    max-width: 55%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+}
+
+#calendar {
+    flex-grow: 1; /* Prend tout l'espace disponible dans le conteneur */
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.section-header {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #444;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 5px;
+}
+
+/* Styles pour les cartes de tâches */
+.task-card {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    transition: transform 0.2s ease-in-out;
+    flex: 1 1 calc(33.333% - 10px);
+    margin: 5px;
+    box-sizing: border-box;
+}
+
+.task-card:hover {
+    transform: translateY(-5px);
+}
+
+.task-card strong {
+    font-size: 16px;
+    color: #333;
+}
+
+.task-card p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #666;
+}
+
+.task-actions {
+    margin-top: 10px;
+}
+
+.task-actions a {
+    margin-right: 10px;
+    text-decoration: none;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 14px;
+    display: inline-block;
+}
+
+.task-actions .edit {
+    background-color: #007bff;
+}
+
+.task-actions .delete {
+    background-color: #dc3545;
+}
+
+.add-task {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #28a745;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 18px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease-in-out;
+}
+
+.add-task:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+}
+
+/* Affichage en ligne des tâches du jour */
+.tasks-today {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.tasks-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.details {
+    margin-top: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+/* Modale */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    font-size: 24px;
+}
+
+.modal-content p {
+    font-size: 16px;
+    margin: 10px 0;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .left-panel, .right-panel {
+        width: 100%;
+        margin: 0;
+        max-width: 100%;
+    }
+
+    .tasks-today .task-card, .tasks-container .task-card {
+        flex: 1 1 100%; /* Une seule carte par ligne sur les petits écrans */
+    }
+
+    .right-panel {
+        margin-top: 20px;
+    }
+}
